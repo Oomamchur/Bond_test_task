@@ -16,29 +16,29 @@ def index(request: HttpRequest) -> HttpResponse:
 class DirectorListView(generic.ListView):
     model = Director
     queryset = Director.objects.prefetch_related("movies")
-    # template_name = "catalog/genre_list.html"
+    template_name = "catalog/director_list.html"
     context_object_name = "director_list"
 
 
-class DirectorDetailView(generic.DetailView):
-    model = Director
+# class DirectorDetailView(generic.DetailView):
+#     model = Director
 
 
-class DirectorCreateView(LoginRequiredMixin, generic.CreateView):
-    model = Director
-    fields = "__all__"
-    success_url = reverse_lazy("catalog:director-list")
-
-
-class DirectorUpdateView(LoginRequiredMixin, generic.UpdateView):
-    model = Director
-    fields = "__all__"
-    # template_name = "catalog/genre_form.html"
-    success_url = reverse_lazy("catalog:director-list")
-
-
-class DirectorDeleteView(LoginRequiredMixin, generic.DeleteView):
-    model = Director
-    fields = "__all__"
-    # template_name = "catalog/actor_confirm_delete.html"
-    success_url = reverse_lazy("catalog:director-list")
+# class DirectorCreateView(LoginRequiredMixin, generic.CreateView):
+#     model = Director
+#     fields = "__all__"
+#     success_url = reverse_lazy("catalog:director-list")
+#
+#
+# class DirectorUpdateView(LoginRequiredMixin, generic.UpdateView):
+#     model = Director
+#     fields = "__all__"
+#     # template_name = "catalog/genre_form.html"
+#     success_url = reverse_lazy("catalog:director-list")
+#
+#
+# class DirectorDeleteView(LoginRequiredMixin, generic.DeleteView):
+#     model = Director
+#     fields = "__all__"
+#     # template_name = "catalog/actor_confirm_delete.html"
+#     success_url = reverse_lazy("catalog:director-list")
