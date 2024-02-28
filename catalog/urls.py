@@ -1,11 +1,11 @@
 from django.urls import path
 
-from catalog.views import index, DirectorListView
+from catalog.views import index, DirectorListView, DirectorDetailView
 
 urlpatterns = [
     path("", index, name="index"),
     path("directors/", DirectorListView.as_view(), name="director-list"),
-    # path("directors/<int:pk>/", DirectorDetailView.as_view(), name="actor-detail"),
+    path("directors/<int:pk>/", DirectorDetailView.as_view(), name="director-detail"),
     # path("directors/create/", DirectorCreateView.as_view(), name="actor-create"),
     # path("directors/<int:pk>/update/",
     #      DirectorUpdateView.as_view(),

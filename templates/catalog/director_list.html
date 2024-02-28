@@ -6,12 +6,12 @@
       <div class="col-12">
         <div class="d-flex justify-content-between align-items-center">
           <h1 class="m-0">Director:</h1>
-
+<!--    create button    todo-->
         </div>
         <ul>
           {% for director in director_list %}
             <li>
-              <a href="#">{{ director }}</a>
+              <a href="{% url 'catalog:director-detail' pk=director.id %}">{{ director }}</a>
                ({{ director.movies.count }} movie{{ director.movies.count|pluralize }})
             </li>
           {% endfor %}

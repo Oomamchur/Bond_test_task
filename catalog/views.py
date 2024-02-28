@@ -20,8 +20,8 @@ class DirectorListView(generic.ListView):
     context_object_name = "director_list"
 
 
-# class DirectorDetailView(generic.DetailView):
-#     model = Director
+class DirectorDetailView(generic.DetailView):
+    model = Director
 
 
 # class DirectorCreateView(LoginRequiredMixin, generic.CreateView):
