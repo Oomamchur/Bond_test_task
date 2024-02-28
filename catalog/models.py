@@ -24,10 +24,11 @@ class Actor(models.Model):
 
 
 class Movie(models.Model):
-    title = models.CharField(max_length=255, unique=True)
+    imdb_id = models.CharField(max_length=255, unique=True)
+    title = models.CharField(max_length=255)
     year = models.IntegerField()
-    description = models.TextField(blank=True)
-    directors = models.ManyToManyField(Director, related_name="movies")
+    plot = models.TextField(blank=True)
+    directors = models.ManyToManyField(Director, blank=True, related_name="movies")
     actors = models.ManyToManyField(Actor, blank=True, related_name="movies")
 
     class Meta:
