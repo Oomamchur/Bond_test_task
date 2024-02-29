@@ -53,10 +53,9 @@ class MovieUpdateView(generic.UpdateView):
     model = Movie
     form_class = MovieForm
     success_url = reverse_lazy("catalog:movie-list")
-#
-#
-# class MovieDeleteView(LoginRequiredMixin, generic.DeleteView):
-#     model = Movie
-#     fields = "__all__"
-#     # template_name = "catalog/actor_confirm_delete.html"
-#     success_url = reverse_lazy("catalog:Movie-list")
+
+
+class MovieDeleteView(generic.DeleteView):
+    model = Movie
+    template_name = "catalog/movie_confirm_delete.html"
+    success_url = reverse_lazy("catalog:movie-list")
