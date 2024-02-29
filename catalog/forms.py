@@ -9,7 +9,7 @@ class MovieForm(forms.ModelForm):
     max_year = 2024
     year = forms.IntegerField(
         required=True,
-        validators=[MinValueValidator(min_year), MaxValueValidator(max_year)]
+        validators=[MinValueValidator(min_year), MaxValueValidator(max_year)],
     )
     directors = forms.ModelMultipleChoiceField(
         queryset=Director.objects.all(),
