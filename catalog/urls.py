@@ -5,7 +5,7 @@ from catalog.views import (
     DirectorListView,
     DirectorDetailView,
     ActorListView,
-    ActorDetailView,
+    ActorDetailView, MovieListView,
 )
 
 
@@ -19,7 +19,8 @@ urlpatterns = [
     ),
     path("actors/", ActorListView.as_view(), name="actor-list"),
     path("actors/<int:pk>/", ActorDetailView.as_view(), name="actor-detail"),
-    # path("movies/", MovieListView.as_view(), name="movie-list"),
+    path("movies/", MovieListView.as_view(), name="movie-list"),
+    # path("movies/<int:pk>/", MovieDetailView.as_view(), name="movie-detail"),
 ]
 
 app_name = "catalog"

@@ -48,8 +48,8 @@ class ActorDetailView(generic.DetailView):
     model = Actor
 
 
-# class MovieListView(generic.ListView):
-#     model = Movie
-#     template_name = "catalog/movie_list.html"
-#     context_object_name = "movie_list"
-#     paginate_by = 10
+class MovieListView(generic.ListView):
+    model = Movie
+    template_name = "catalog/movie_list.html"
+    context_object_name = "movie_list"
+
