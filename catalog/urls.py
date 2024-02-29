@@ -35,7 +35,7 @@ urlpatterns = [
     path(
         "movies/<int:pk>/delete/",
         MovieDeleteView.as_view(),
-        name="movie-update",
+        name="movie-delete",
     ),
 ]
 
