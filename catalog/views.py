@@ -49,11 +49,10 @@ class MovieCreateView(generic.CreateView):
     success_url = reverse_lazy("catalog:movie-list")
 
 
-# class MovietorUpdateView(LoginRequiredMixin, generic.UpdateView):
-#     model = Movie
-#     fields = "__all__"
-#     # template_name = "catalog/genre_form.html"
-#     success_url = reverse_lazy("catalog:Movie-list")
+class MovieUpdateView(generic.UpdateView):
+    model = Movie
+    form_class = MovieForm
+    success_url = reverse_lazy("catalog:movie-list")
 #
 #
 # class MovieDeleteView(LoginRequiredMixin, generic.DeleteView):
