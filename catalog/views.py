@@ -15,6 +15,7 @@ def index(request: HttpRequest) -> HttpResponse:
 class DirectorListView(generic.ListView):
     model = Director
     queryset = Director.objects.prefetch_related("movies")
+    paginate_by = 25
 
 
 class DirectorDetailView(generic.DetailView):
@@ -42,6 +43,7 @@ class DirectorDetailView(generic.DetailView):
 class ActorListView(generic.ListView):
     model = Actor
     queryset = Actor.objects.prefetch_related("movies")
+    paginate_by = 25
 
 
 class ActorDetailView(generic.DetailView):
@@ -51,6 +53,7 @@ class ActorDetailView(generic.DetailView):
 class MovieListView(generic.ListView):
     model = Movie
     queryset = Movie.objects.prefetch_related("actors", "directors")
+    paginate_by = 25
 
 
 class MovieDetailView(generic.DetailView):
