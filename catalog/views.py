@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
+from catalog.forms import MovieForm
 from catalog.models import Director, Movie, Actor
 
 
@@ -22,24 +23,6 @@ class DirectorDetailView(generic.DetailView):
     model = Director
 
 
-# class DirectorCreateView(generic.CreateView):
-#     model = Director
-#     fields = "__all__"
-#     success_url = reverse_lazy("catalog:director-list")
-
-
-# class DirectorUpdateView(LoginRequiredMixin, generic.UpdateView):
-#     model = Director
-#     fields = "__all__"
-#     # template_name = "catalog/genre_form.html"
-#     success_url = reverse_lazy("catalog:director-list")
-#
-#
-# class DirectorDeleteView(LoginRequiredMixin, generic.DeleteView):
-#     model = Director
-#     fields = "__all__"
-#     # template_name = "catalog/actor_confirm_delete.html"
-#     success_url = reverse_lazy("catalog:director-list")
 class ActorListView(generic.ListView):
     model = Actor
     queryset = Actor.objects.prefetch_related("movies")
@@ -58,3 +41,23 @@ class MovieListView(generic.ListView):
 
 class MovieDetailView(generic.DetailView):
     model = Movie
+
+
+class MovieCreateView(generic.CreateView):
+    model = Movie
+    form_class = MovieForm
+    success_url = reverse_lazy("catalog:movie-list")
+
+
+# class MovietorUpdateView(LoginRequiredMixin, generic.UpdateView):
+#     model = Movie
+#     fields = "__all__"
+#     # template_name = "catalog/genre_form.html"
+#     success_url = reverse_lazy("catalog:Movie-list")
+#
+#
+# class MovieDeleteView(LoginRequiredMixin, generic.DeleteView):
+#     model = Movie
+#     fields = "__all__"
+#     # template_name = "catalog/actor_confirm_delete.html"
+#     success_url = reverse_lazy("catalog:Movie-list")
