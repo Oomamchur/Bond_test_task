@@ -50,6 +50,8 @@ class ActorDetailView(generic.DetailView):
 
 class MovieListView(generic.ListView):
     model = Movie
-    template_name = "catalog/movie_list.html"
-    context_object_name = "movie_list"
+    # todo: fix N+1
 
+
+class MovieDetailView(generic.DetailView):
+    model = Movie

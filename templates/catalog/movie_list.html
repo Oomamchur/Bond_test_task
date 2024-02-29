@@ -11,7 +11,7 @@
         <ul>
           {% for movie in movie_list %}
             <li>
-              <a href="#">{{ movie }}</a>
+              <a href="{% url 'catalog:movie-detail' pk=movie.id %}">{{ movie }}</a>
             </li>
           {% endfor %}
         </ul>
