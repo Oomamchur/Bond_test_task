@@ -14,7 +14,7 @@ def index(request: HttpRequest) -> HttpResponse:
 
 class DirectorListView(generic.ListView):
     model = Director
-    # todo: fix N+1
+    queryset = Director.objects.prefetch_related("movies")
 
 
 class DirectorDetailView(generic.DetailView):
@@ -41,7 +41,7 @@ class DirectorDetailView(generic.DetailView):
 #     success_url = reverse_lazy("catalog:director-list")
 class ActorListView(generic.ListView):
     model = Actor
-    # todo: fix N+1
+    queryset = Actor.objects.prefetch_related("movies")
 
 
 class ActorDetailView(generic.DetailView):
@@ -50,7 +50,7 @@ class ActorDetailView(generic.DetailView):
 
 class MovieListView(generic.ListView):
     model = Movie
-    # todo: fix N+1
+    queryset = Movie.objects.prefetch_related("actors", "directors")
 
 
 class MovieDetailView(generic.DetailView):
