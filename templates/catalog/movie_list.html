@@ -7,15 +7,39 @@
         <div class="d-flex justify-content-between align-items-center">
           <h1 class="m-0">Movies:</h1>
 <!--    create button    todo-->
-        </div>
-        <ul>
-          {% for movie in movie_list %}
-            <li>
-              <a href="{% url 'catalog:movie-detail' pk=movie.id %}">{{ movie }}</a>
-            </li>
-          {% endfor %}
-        </ul>
 
+          {% block search %}
+            {% include "includes/search.html" %}
+          {% endblock %}
+        </div>
+        <table class="table">
+          <thead>
+          <tr>
+              <th>Title</th>
+              <th>Year</th>
+              <th>Directors</th>
+              <th>Actors</th>
+          </tr>
+          </thead>
+          <tbody>
+            {% for movie in movie_list %}
+              <tr>
+                <td><a href="{% url 'catalog:movie-detail' pk=movie.id %}">{{ movie.title }}</a></td>
+                <td>{{movie.year}}</td>
+                <td>
+                  {% for director in movie.directors.all %}
+                    <a href="{% url 'catalog:director-detail' pk=director.id %}">{{ director }}</a>
+                  {% endfor %}
+                </td>
+                <td>
+                  {% for actor in movie.actors.all %}
+                    <a href="{% url 'catalog:actor-detail' pk=actor.id %}">{{ actor }}</a>
+                  {% endfor %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
