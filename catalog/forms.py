@@ -13,6 +13,7 @@ class MovieForm(forms.ModelForm):
     )
     directors = forms.ModelMultipleChoiceField(
         queryset=Director.objects.all(),
+        required=False,
         widget=forms.CheckboxSelectMultiple,
     )
     actors = forms.ModelMultipleChoiceField(
