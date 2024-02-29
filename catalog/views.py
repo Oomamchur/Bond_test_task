@@ -44,8 +44,8 @@ class ActorListView(generic.ListView):
     # todo: fix N+1
 
 
-# class ActorDetailView(generic.DetailView):
-#     model = Actor
+class ActorDetailView(generic.DetailView):
+    model = Actor
 
 
 # class MovieListView(generic.ListView):
