@@ -1,10 +1,9 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from catalog.models import Director, Movie
+from catalog.models import Director, Movie, Actor
 
 
 def index(request: HttpRequest) -> HttpResponse:
@@ -15,21 +14,19 @@ def index(request: HttpRequest) -> HttpResponse:
 
 class DirectorListView(generic.ListView):
     model = Director
-    queryset = Director.objects.prefetch_related("movies")
-    template_name = "catalog/director_list.html"
-    context_object_name = "director_list"
+    # todo: fix N+1
 
 
 class DirectorDetailView(generic.DetailView):
     model = Director
 
 
-# class DirectorCreateView(LoginRequiredMixin, generic.CreateView):
+# class DirectorCreateView(generic.CreateView):
 #     model = Director
 #     fields = "__all__"
 #     success_url = reverse_lazy("catalog:director-list")
-#
-#
+
+
 # class DirectorUpdateView(LoginRequiredMixin, generic.UpdateView):
 #     model = Director
 #     fields = "__all__"
@@ -42,3 +39,17 @@ class DirectorDetailView(generic.DetailView):
 #     fields = "__all__"
 #     # template_name = "catalog/actor_confirm_delete.html"
 #     success_url = reverse_lazy("catalog:director-list")
+class ActorListView(generic.ListView):
+    model = Actor
+    # todo: fix N+1
+
+
+# class ActorDetailView(generic.DetailView):
+#     model = Actor
+
+
+# class MovieListView(generic.ListView):
+#     model = Movie
+#     template_name = "catalog/movie_list.html"
+#     context_object_name = "movie_list"
+#     paginate_by = 10
