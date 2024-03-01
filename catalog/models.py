@@ -2,25 +2,23 @@ from django.db import models
 
 
 class Director(models.Model):
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
+    full_name = models.CharField(max_length=255)
 
     class Meta:
-        ordering = ("last_name",)
+        ordering = ("full_name",)
 
     def __str__(self) -> str:
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.full_name}"
 
 
 class Actor(models.Model):
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
+    full_name = models.CharField(max_length=255)
 
     class Meta:
-        ordering = ("last_name",)
+        ordering = ("full_name",)
 
     def __str__(self) -> str:
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.full_name}"
 
 
 class Movie(models.Model):
@@ -28,7 +26,9 @@ class Movie(models.Model):
     title = models.CharField(max_length=255)
     year = models.IntegerField()
     plot = models.TextField(blank=True)
-    directors = models.ManyToManyField(Director, blank=True, related_name="movies")
+    directors = models.ManyToManyField(
+        Director, blank=True, related_name="movies"
+    )
     actors = models.ManyToManyField(Actor, blank=True, related_name="movies")
 
     class Meta:
