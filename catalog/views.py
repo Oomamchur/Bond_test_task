@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
+from catalog.filter import MovieFilter
 from catalog.forms import MovieForm
 from catalog.models import Director, Movie, Actor
 
@@ -36,8 +37,23 @@ class ActorDetailView(generic.DetailView):
 
 class MovieListView(generic.ListView):
     model = Movie
-    queryset = Movie.objects.prefetch_related("actors", "directors")
     paginate_by = 25
+
+    def __init__(self, **kwargs):
+        super().__init__(kwargs)
+        self.filterset = None
+
+    def get_queryset(self):
+        queryset = Movie.objects.prefetch_related("actors", "directors")
+        self.filterset = MovieFilter(self.request.GET, queryset=queryset)
+
+        return self.filterset.qs
+
+    def get_context_data(self, *, object_list=None, **kwargs) -> dict:
+        context = super(MovieListView, self).get_context_data(**kwargs)
+        context["search_form"] = self.filterset.form
+
+        return context
 
 
 class MovieDetailView(generic.DetailView):
