@@ -144,3 +144,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+OMDB_API_URL = "https://www.omdbapi.com/"
+
+OMDB_API_KEY = os.environ["OMDB_API_KEY"]
