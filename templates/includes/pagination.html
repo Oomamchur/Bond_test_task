@@ -1,3 +1,4 @@
+{% load query_transform %}
 {% if is_paginated %}
   <div class="container top-5 mt-2" >
     <div class="row">
@@ -5,8 +6,7 @@
         <ul class="pagination pagination-primary">
           {% if page_obj.has_previous %}
             <li class="page-item">
-              <a class="page-link" href="?page={{ page_obj.previous_page_number }}"><
-              </a>
+              <a class="page-link" href="?{% query_transform request page=page_obj.previous_page_number %}"><</a>
             </li>
           {% endif %}
             <li class="page-item active">
@@ -14,7 +14,7 @@
             </li>
           {% if page_obj.has_next %}
             <li class="page-item">
-              <a class="page-link" href="?page={{ page_obj.next_page_number }}">>
+              <a class="page-link" href="?{% query_transform request page=page_obj.next_page_number %}">>
               </a>
             </li>
           {% endif %}
