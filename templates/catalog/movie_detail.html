@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="container top-5 mt-7" >
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex justify-content-between">
+        <h3 class="mr-auto">Movie: {{ movie.title }}</h3>
+        <div class="ml-auto">
+          <a href="{% url 'catalog:movie-update' pk=movie.id %}" class="btn btn-secondary link-to-page ml-2">Update</a>
+          <a href="{% url 'catalog:movie-delete' pk=movie.id %}" class="btn btn-danger link-to-page ml-2">Delete</a>
+        </div>
+      </div>
+      <br>
+      <h6>Release year: {{ movie.year }}</h6>
+      <h6>IMDB ID: {{ movie.imdb_id }}</h6>
+      <h6>Director:
+        {% for director in movie.directors.all %}
+          <a href="{% url 'catalog:director-detail' pk=director.id %}">{{ director }}</a>
+        {% endfor %}
+      </h6>
+      <br>
+      <h6>Plot:
+        {{ movie.plot }}
+      </h6>
+      <br>
+      <h6>Cast:</h6>
+      <ul>
+        {% for actor in movie.actors.all %}
+          <li>
+            <a href="{% url 'catalog:actor-detail' pk=actor.id %}">{{ actor }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+      <p>Image</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

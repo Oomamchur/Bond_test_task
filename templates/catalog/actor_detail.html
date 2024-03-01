@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container top-5 mt-7" >
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex justify-content-between">
+          <h3 class="mr-auto">Actor: {{ actor }}</h3>
+<!--    update, delete  button    todo-->
+        </div>
+        <h5>Filmography:</h5>
+        <ul>
+          {% for movie in actor.movies.all %}
+          <li>
+            <a href="#">{{ movie }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endblock %}
