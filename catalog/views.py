@@ -10,7 +10,7 @@ from catalog.models import Director, Movie, Actor
 
 def index(request: HttpRequest) -> HttpResponse:
     num_movies = Movie.objects.count()
-    queryset = Movie.objects.order_by("-id")[:3]
+    queryset = Movie.objects.order_by("-id")[:5]
     context = {"num_movies": num_movies, "movie_list": queryset}
     return render(request, "catalog/index.html", context=context)
 
