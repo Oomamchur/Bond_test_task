@@ -39,8 +39,8 @@ class MovieListView(generic.ListView):
     model = Movie
     paginate_by = 25
 
-    def __init__(self, **kwargs):
-        super().__init__(kwargs)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.filterset = None
 
     def get_queryset(self):

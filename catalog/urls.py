@@ -13,7 +13,6 @@ from catalog.views import (
     MovieDeleteView,
 )
 
-
 urlpatterns = [
     path("", index, name="index"),
     path("directors/", DirectorListView.as_view(), name="director-list"),
