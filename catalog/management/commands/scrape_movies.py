@@ -13,13 +13,15 @@ class Command(BaseCommand):
         while quantity != count:
             imdb_id = "tt" + str(random.randint(0, 9999999)).zfill(8)
             payload = {"apikey": settings.OMDB_API_KEY, "i": imdb_id}
-            response = requests.get(settings.OMDB_API_URL, params=payload).json()
+            response = requests.get(
+                settings.OMDB_API_URL, params=payload
+            ).json()
             if response["Response"] == "True":
                 movie, created = Movie.objects.get_or_create(
                     imdb_id=imdb_id,
                     title=response["Title"],
                     year=response["Year"],
-                    plot=response["Plot"]
+                    plot=response["Plot"],
                 )
                 movie_directors = [
                     Director.objects.get_or_create(full_name=director)[0]
