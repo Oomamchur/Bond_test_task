@@ -20,7 +20,7 @@ class Command(BaseCommand):
                 movie, created = Movie.objects.get_or_create(
                     imdb_id=imdb_id,
                     title=response["Title"],
-                    year=response["Year"],
+                    year=response["Year"].split("-")[0],
                     plot=response["Plot"],
                 )
                 movie_directors = [
